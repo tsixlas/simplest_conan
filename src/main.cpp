@@ -1,6 +1,4 @@
 #include "simplest_conan.h"
-#include <vector>
-#include <string>
 
 int main() {
 
