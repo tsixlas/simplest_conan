@@ -39,6 +39,3 @@ CMakeUserPresets.json
 
 # Clion
 .idea
-
-# VSCode
-.vscode

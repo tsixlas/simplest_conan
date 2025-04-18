@@ -1,0 +1,40 @@
+{
+    // See https://code.visualstudio.com/docs/editor/tasks for more information
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Install Conan dependencies",
+            "type": "shell",
+            "command": "source ~/venv/bin/activate; conan install . --build=missing",
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Installs the Conan dependencies for the project."
+        },
+        {
+            "label": "Build with Conan",
+            "type": "shell",
+            "command": "source ~/venv/bin/activate && conan build .",
+            "group": "build",
+            "problemMatcher": [],
+            "dependsOn": "Install Conan dependencies",
+            "detail": "Builds the project using Conan."
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/${buildType}/simplest_conan",
+            "group": "build",
+            "problemMatcher": [],
+            "dependsOn": [
+                //"Install Conan dependencies",
+                "Build with Conan"
+            ],
+            "detail": "Runs the built project.",
+            "options": {
+                "env": {
+                    "buildType": "Debug"
+                }
+            }
+        }
+    ]
+}
