@@ -20,21 +20,13 @@
             "detail": "Builds the project using Conan."
         },
         {
-            "label": "Run",
+            "label": "Create Conan package",
             "type": "shell",
-            "command": "${workspaceFolder}/build/${buildType}/simplest_conan",
+            "command": "source ~/venv/bin/activate && conan create .",
             "group": "build",
             "problemMatcher": [],
-            "dependsOn": [
-                //"Install Conan dependencies",
-                "Build with Conan"
-            ],
-            "detail": "Runs the built project.",
-            "options": {
-                "env": {
-                    "buildType": "Debug"
-                }
-            }
+            "dependsOn": "Install Conan dependencies",
+            "detail": "Create Conan package"
         }
     ]
 }

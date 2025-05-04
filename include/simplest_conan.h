@@ -3,12 +3,14 @@
 #include <vector>
 #include <string>
 
+void hello_world_helper(const char* str);
 
-#ifdef _WIN32
-  #define SIMPLEST_CONAN_EXPORT __declspec(dllexport)
-#else
-  #define SIMPLEST_CONAN_EXPORT
-#endif
+class SimpleClass {
+public:
+    SimpleClass();
+    ~SimpleClass();
 
-
-SIMPLEST_CONAN_EXPORT void hello_world_helper(const char* str);
+    void hello_world(const char* str);
+    void hello_world(const std::string& str);
+    void hello_world(const std::vector<std::string>& str);
+};

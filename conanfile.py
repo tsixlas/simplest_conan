@@ -1,3 +1,4 @@
+from os import path
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 from conan.tools.files import copy
@@ -5,26 +6,27 @@ from conan.tools.files import copy
 
 class simplest_conanRecipe(ConanFile):
     name = "simplest_conan"
-    version = "0.1"
-    package_type = "application"
+    version = "0.2"
     generators = "CMakeDeps", "CMakeToolchain"
     settings = "os", "compiler", "build_type", "arch"
-    exports_sources = "CMakeLists.txt", "src/*.cpp", "include/*.h"
+    exports_sources = "CMakeLists.txt", "*.cpp", "*.h"
 
     requires = [
     ]
 
     def layout(self):
-        cmake_layout(self)
+        build_path = path.join("build" + str(self.settings.arch), str(self.settings.build_type))
+        self.folders.generators = build_path
+        self.folders.build = build_path
+        self.folders.install = build_path
 
     def build(self):
-        cmake = CMake(self)
-        cmake.configure()
-        cmake.build()
+        self.cmake = CMake(self)
+        self.cmake.configure()
+        self.cmake.build()
 
     def package(self):
-        cmake = CMake(self)
-        cmake.install()
+        self.cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["simplest_conan"]
+        self.cpp_info.libs = [self.name]
