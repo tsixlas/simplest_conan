@@ -13,5 +13,5 @@ file(GLOB HEADER_FILES include/simplest_conan.h)
 # Build the library
 add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
 
-install(TARGETS ${PROJECT_NAME})
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
 install(FILES ${HEADER_FILES} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME})
